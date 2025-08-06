@@ -1,21 +1,20 @@
-import { useState } from 'react'
-import './App.css'
-
-import { Gallery } from './components/Gallery';
+import './App.css';
+import { CatProvider } from './context/CatContext';
+import { CatGallery } from './components/CatGallery';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
+    <CatProvider>
       <div className="min-h-screen bg-gray-100">
-      <h1 className="text-3xl font-bold text-center py-6 text-pink-600">
-        Cat Image Gallery
-      </h1>
-      <Gallery />
-    </div>
-    </>
-  )
+        <header className="text-center py-6">
+          <h1 className="text-3xl font-bold text-pink-600">🐱 Cat Image Gallery</h1>
+        </header>
+        <main>
+          <CatGallery />
+        </main>
+      </div>
+    </CatProvider>
+  );
 }
 
-export default App
+export default App;
