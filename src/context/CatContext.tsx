@@ -7,16 +7,9 @@ import {
   useCallback,
 } from 'react';
 import { fetchCatImages, postVote, getUserVotes } from '../services/api';
-import { type CatImage } from '../types';
+import { type CatImage, type CatContextType } from '../types';
 import { getOrCreateSubId } from '../utils/getSubId';
 
-type CatContextType = {
-  cats: CatImage[];
-  isLoading: boolean;
-  getCats: () => void;
-  vote: (imageId: string, value: 1 | -1) => void;
-  votes: { image_id: string; value: 1 | -1 }[];
-};
 
 const CatContext = createContext<CatContextType | undefined>(undefined);
 
@@ -37,8 +30,6 @@ export const CatProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     try {
       const data = await fetchCatImages();
       const voteData = await getUserVotes(subId);
-          console.log("get cat")
-
 
       const enriched = data.map(cat => {
         const vote = voteData.find(v => v.image_id === cat.id);

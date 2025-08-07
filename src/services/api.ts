@@ -1,4 +1,4 @@
-import { type CatImage } from '../types';
+import { type CatImage, type Vote } from '../types';
 
 const API_KEY = import.meta.env.VITE_CAT_API_KEY;
 
@@ -23,7 +23,7 @@ export const postVote = async (
   image_id: string,
   value: 1 | -1,
   sub_id: string
-): Promise<any> => {
+): Promise<Vote> => {
   const res = await fetch('https://api.thecatapi.com/v1/votes', {
     method: 'POST',
     headers: {
@@ -51,7 +51,7 @@ export const getUserVotes = async (sub_id: string): Promise<{ image_id: string; 
 
   const data = await res.json();
 
-  return data.map((vote: any) => ({
+  return data.map((vote: Vote) => ({
     image_id: vote.image_id,
     value: vote.value,
   }));
