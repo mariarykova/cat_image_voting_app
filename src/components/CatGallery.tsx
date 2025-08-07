@@ -1,6 +1,7 @@
+import { Transition } from '@headlessui/react';
+
 import { useCatContext } from '../context/CatContext';
 import { CatImageCard } from './CatImageCard';
-import { Transition } from '@headlessui/react';
 
 import CatSvg from '../assets/cat.svg?react';
 

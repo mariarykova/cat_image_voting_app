@@ -12,13 +12,10 @@ export const CatImageCard: React.FC<Props> = ({ cat }) => {
     const userVote = votes.find((v) => v.image_id === cat.id);
     const hasVoted = !!userVote;
 
-
     const handleVote = (value: 1 | -1) => {
-    if (!hasVoted) {
-      vote(cat.id, value);
-    }
+    if (!hasVoted) vote(cat.id, value);
+    
   };
-
 
   return (
     <div className="rounded overflow-hidden shadow hover:shadow-lg transition">
@@ -37,7 +34,6 @@ export const CatImageCard: React.FC<Props> = ({ cat }) => {
           className={`p-2 rounded-full transition border 
             ${userVote?.value === 1 ? 'border-green-500' : 'hover:border-green-500 cursor-pointer'}
             ${hasVoted ? 'opacity-50 cursor-not-allowed' : ''}`}
-          
         >
           <ThumbUpIcon className="w-5 h-5" />
         </button>

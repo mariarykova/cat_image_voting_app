@@ -12,10 +12,8 @@ export const fetchCatImages = async (): Promise<CatImage[]> => {
     }
   );
 
-  if (!response.ok) {
-    throw new Error('Failed to fetch cat images');
-  }
-
+  if (!response.ok) throw new Error('Failed to fetch cat images');
+  
   return await response.json();
 };
 
@@ -45,10 +43,8 @@ export const getUserVotes = async (sub_id: string): Promise<{ image_id: string; 
     },
   });
 
-  if (!res.ok) {
-    throw new Error('Failed to fetch user votes');
-  }
-
+  if (!res.ok) throw new Error('Failed to fetch user votes');
+  
   const data = await res.json();
 
   return data.map((vote: Vote) => ({

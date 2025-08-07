@@ -3,7 +3,6 @@ import { useCatContext } from '../context/CatContext';
 export const RefreshGalleryButton: React.FC = () => {
   const { isLoading, getCats } = useCatContext();
 
-
   return (
    <div className="text-center mt-4">
         <button
