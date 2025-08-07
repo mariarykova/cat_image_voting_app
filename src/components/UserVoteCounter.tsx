@@ -5,7 +5,7 @@ export const VoteCounter: React.FC = () => {
 
   return (
     <p className="text-center text-gray-700 mt-4">
-      🗳️ You’ve cast {votes.length} vote{votes.length !== 1 && 's'}.
+      You’ve cast {votes.length} vote{votes.length !== 1 && 's'}.
     </p>
   );
 };
