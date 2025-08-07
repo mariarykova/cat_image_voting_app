@@ -37,3 +37,22 @@ export const postVote = async (
 
   return await res.json();
 };
+
+export const getUserVotes = async (sub_id: string): Promise<{ image_id: string; value: 1 | -1 }[]> => {
+  const res = await fetch(`https://api.thecatapi.com/v1/votes?sub_id=${sub_id}`, {
+    headers: {
+      'x-api-key': API_KEY,
+    },
+  });
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch user votes');
+  }
+
+  const data = await res.json();
+
+  return data.map((vote: any) => ({
+    image_id: vote.image_id,
+    value: vote.value,
+  }));
+};
