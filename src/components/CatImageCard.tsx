@@ -30,6 +30,8 @@ export const CatImageCard: React.FC<Props> = ({ cat }) => {
       />
       <div className="flex justify-center items-center gap-4 p-4">
         <button
+          aria-label="Vote up"
+          data-testid="vote-up"
           onClick={() => handleVote(1)}
           disabled={hasVoted}
           className={`p-2 rounded-full transition border 
@@ -40,6 +42,8 @@ export const CatImageCard: React.FC<Props> = ({ cat }) => {
           <ThumbUpIcon className="w-5 h-5" />
         </button>
         <button
+          aria-label="Vote down"
+          data-testid="vote-down"
           onClick={() => handleVote(-1)}
           disabled={hasVoted}
           className={`p-2 rounded-full transition border 
