@@ -13,7 +13,7 @@ import { getOrCreateSubId } from '../utils/getSubId';
 type CatContextType = {
   cats: CatImage[];
   isLoading: boolean;
-  refreshCats: () => void;
+  getCats: () => void;
   vote: (imageId: string, value: 1 | -1) => void;
   votes: { image_id: string; value: 1 | -1 }[];
 };
@@ -32,13 +32,14 @@ export const CatProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [subId] = useState(getOrCreateSubId);
   const [votes, setVotes] = useState<{ image_id: string; value: 1 | -1 }[]>([]);
 
-  const refreshCats = useCallback(async () => {
+  const getCats = useCallback(async () => {
     setIsLoading(true);
     try {
       const data = await fetchCatImages();
       const voteData = await getUserVotes(subId);
+          console.log("get cat")
 
-      // Merge votes into images
+
       const enriched = data.map(cat => {
         const vote = voteData.find(v => v.image_id === cat.id);
         return {
@@ -61,7 +62,6 @@ export const CatProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     try {
       await postVote(imageId, value, subId);
 
-      // Optimistic update for `cats`
       setCats(prev =>
         prev.map(cat => {
           if (cat.id !== imageId) return cat;
@@ -74,7 +74,6 @@ export const CatProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         })
       );
 
-      // Re-fetch votes to update context state
       const updatedVotes = await getUserVotes(subId);
       setVotes(updatedVotes);
     } catch (error) {
@@ -83,11 +82,11 @@ export const CatProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   useEffect(() => {
-    refreshCats();
-  }, [refreshCats]);
+    getCats();
+  }, [getCats]);
 
   return (
-    <CatContext.Provider value={{ cats, isLoading, refreshCats, vote, votes }}>
+    <CatContext.Provider value={{ cats, isLoading, getCats, vote, votes }}>
       {children}
     </CatContext.Provider>
   );
