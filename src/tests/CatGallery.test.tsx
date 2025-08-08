@@ -21,13 +21,14 @@ vi.mock('../context/CatContext', async () => {
 });
 
 
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import { CatGallery } from '../components/CatGallery';
+import { renderWithProviders } from './utils';
 
 
 describe('Gallery Component', () => {
   it('renders all cat images from context', () => {
-    render(<CatGallery />);
+    renderWithProviders(<CatGallery />);
     const images = screen.getAllByRole('img');
     expect(images.length).toBe(2);
     expect(images[0]).toHaveAttribute('src', 'https://cdn2.thecatapi.com/images/2k3.png');

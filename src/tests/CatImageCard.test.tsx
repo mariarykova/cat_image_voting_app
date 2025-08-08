@@ -1,7 +1,8 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { screen, fireEvent } from '@testing-library/react';
 import { CatImageCard } from '../components/CatImageCard';
 import type { CatImage } from '../types';
+import { renderWithProviders } from './utils';
 
 const voteMock = vi.fn();
 
@@ -30,7 +31,7 @@ describe('CatImageCard', () => {
   });
 
   it('calls vote function on upvote click', () => {
-    render(<CatImageCard cat={mockCat} />);
+    renderWithProviders(<CatImageCard cat={mockCat} />);
     const upBtn = screen.getByTestId('vote-up');
     fireEvent.click(upBtn);
 
@@ -39,7 +40,7 @@ describe('CatImageCard', () => {
   });
 
   it('calls vote function on downvote click', () => {
-    render(<CatImageCard cat={mockCat} />);
+    renderWithProviders(<CatImageCard cat={mockCat} />);
     const downBtn = screen.getByTestId('vote-down');
     fireEvent.click(downBtn);
 
