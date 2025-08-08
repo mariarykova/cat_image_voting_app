@@ -63,7 +63,7 @@ npm run build
 ```bash
 npm run preview
 
-
+```
 ---
 
-## Enjoy Fun Voting - DEMO LINK - https://fun-cat-voting.vercel.app/
+### Enjoy Fun Voting - DEMO LINK - https://fun-cat-voting.vercel.app/
