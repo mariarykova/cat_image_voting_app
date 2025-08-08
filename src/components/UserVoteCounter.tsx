@@ -4,7 +4,7 @@ export const VoteCounter: React.FC = () => {
   const { votes } = useCatContext();
 
   return (
-    <p className="text-center text-gray-700 mt-4">
+    <p className="text-center mt-4 text-sm text-gray-700 dark:text-gray-300">
       You’ve cast {votes.length} vote{votes.length !== 1 && 's'}.
     </p>
   );
